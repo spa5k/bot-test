@@ -1,0 +1,76 @@
+{
+  "name": "discord-typescript-bot",
+  "version": "0.0.1",
+  "description": "Typescript Bot",
+  "keywords": [
+    "cjs",
+    "dts",
+    "esbuild",
+    "esm",
+    "library",
+    "template"
+  ],
+  "homepage": "https://github.com/spa5k/discord-typescript-bot#readme",
+  "bugs": {
+    "url": "https://github.com/spa5k/discord-typescript-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spa5k/discord-typescript-bot.git"
+  },
+  "license": "MIT",
+  "author": "spa5k",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "node-dev -r dotenv/config dist/src/index.js --notify=false",
+    "build": "npx tsc",
+    "register": "node -r dotenv/config dist/src/deploy-commands.js",
+    "format": "prettier --write .",
+    "lint": "eslint src --ext .ts --fix",
+    "proc": "npm run register && npm run dev"
+  },
+  "dependencies": {
+    "@discordjs/rest": "1.1.0",
+    "@giphy/js-fetch-api": "4.4.0",
+    "@prisma/client": "4.2.1",
+    "@vitalets/google-translate-api": "8.0.0",
+    "discord-api-types": "0.37.5",
+    "discord.js": "14.3.0",
+    "dotenv": "16.0.1",
+    "is-url-online": "1.5.0",
+    "isomorphic-fetch": "3.0.0",
+    "node-cron": "3.0.2",
+    "node-dev": "7.4.3",
+    "novels-raw-scraper": "1.4.5",
+    "playwright-chromium": "1.25.1",
+    "typescript": "4.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.13",
+    "@types/node-cron": "3.0.2",
+    "@typescript-eslint/eslint-plugin": "5.35.1",
+    "@typescript-eslint/parser": "5.35.1",
+    "eslint": "8.23.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-import-resolver-node": "0.3.6",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-sonarjs": "0.15.0",
+    "eslint-plugin-unicorn": "43.0.2",
+    "prettier": "2.7.1",
+    "prisma": "4.2.1",
+    "ts-node": "^10.9.1",
+    "tslib": "2.4.0"
+  },
+  "engines": {
+    "node": ">=v16.x"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "conventionalCommits.scopes": [
+    "main",
+    "deps",
+    "actions",
+    "test",
+    "husky",
+    "docs",
+    "command",
+    "types",
+    "database",
+    "novel",
+    "commands",
+    "refactor",
+    "roles",
+    "source"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

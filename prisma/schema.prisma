@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("DEV_DATABASE_URL")
+}
+
+model novel {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug          String   @unique
+  name          String
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @db.Timestamptz(6)
+  thumbnailUrl  String
+  defaultSource String?
+  status        STATUS   @default(ENABLED)
+
+  source_novelTosource_id source?  @relation("novelTosource_id", fields: [sourceId], references: [id])
+  sources                 source[] @relation("novelTosource_novel_id")
+  sourceId                String?  @db.Uuid
+  @@index([name])
+  @@index([slug])
+}
+
+model source {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  source         String
+  novelId        String   @db.Uuid
+  chapterUrl     String   @default("")
+  chapterNumber  Int
+  updatedAt      DateTime @updatedAt @db.Timestamptz(6)
+  linkSelector   String
+  titleSelector  String
+  numberSelector String
+  chapterTitle   String
+  sourceUrl      String   @unique
+  roleId         String?
+  channelId      String   @default("745704147512328202")
+  status         STATUS   @default(ENABLED)
+
+  novel_novelTosource_novel_id novel @relation("novelTosource_novel_id", fields: [novelId], references: [id], map: "source_novelId_fkey")
+
+  novel novel[] @relation("novelTosource_id")
+  @@index([chapterNumber, chapterTitle, chapterUrl, updatedAt])
+  @@index([source, sourceUrl])
+}
+
+enum STATUS {
+  DISABLED
+  ENABLED
+}
