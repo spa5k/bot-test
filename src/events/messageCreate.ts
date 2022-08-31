@@ -56,7 +56,4 @@ client.on('messageCreate', async (message) => {
       await browser.close();
     }
   }
-  await message.channel.send(
-    '**Attention please**: After few weeks, our Bot will only respond to slash (/) commands, the old type of commands will not be available.',
-  );
 });

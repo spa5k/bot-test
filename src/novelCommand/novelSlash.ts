@@ -10,7 +10,7 @@ export const novelSlash: NovelSlashCommand = {
   permission: 'SEND_MESSAGES',
   execute: async (interaction, client, giphy, page) => {
     const source = interaction.options.data[0]?.value?.toString();
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     await interaction.editReply({ content: 'Searching 🔍!' });
     let found = false;

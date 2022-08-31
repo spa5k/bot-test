@@ -1,5 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { GuildMemberRoleManager } from 'discord.js';
+import { GuildMemberRoleManager, SlashCommandBuilder } from 'discord.js';
 import { SlashCommand } from '../types/discord';
 
 const roles: SlashCommand = {

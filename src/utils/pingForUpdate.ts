@@ -1,4 +1,4 @@
-import { Client, EmbedBuilder, TextChannel } from 'discord.js';
+import { Client, EmbedBuilder, NewsChannel } from 'discord.js';
 
 type RolePing = {
   roleId: string | null;
@@ -13,7 +13,7 @@ export const pingForUpdate = async ({
   client,
   embed,
 }: RolePing): Promise<boolean> => {
-  const channelToSend = client.channels.cache.get(channelId) as TextChannel;
+  const channelToSend = client.channels.cache.get(channelId) as NewsChannel;
   if (channelToSend) {
     const tag = roleId ? `<@&${roleId}>` : '';
     await channelToSend.send({ content: tag, embeds: [embed] });

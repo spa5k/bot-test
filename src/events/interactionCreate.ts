@@ -6,7 +6,6 @@ import { client } from '../config/client';
 import { SlashCommand } from '../types/discord';
 
 client.on('interactionCreate', async (interaction) => {
-  console.log('interaction', interaction);
   if (!interaction.isCommand()) return;
   const command: SlashCommand = client.slashCommands.get(
     interaction.commandName,

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder } from 'discord.js';
 import { chromium } from 'playwright-chromium';
 import { client } from '../../config/client';
 import { db } from '../../prisma';

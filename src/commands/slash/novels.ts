@@ -1,5 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { Embed } from 'discord.js';
+import { Embed, SlashCommandBuilder } from 'discord.js';
 import { db } from '../../prisma';
 import { SlashCommand } from '../../types/discord';
 
@@ -35,13 +34,13 @@ const novels: SlashCommand = {
       const fields = novel.sources.map((source) => ({
         name: source.source.toUpperCase(),
         value: `<@&${source.roleId as string}> ${
-          source.status === 'ENABLED' ? '🟢' : '🔴'
+          source.status === 'ENABLED' ? '✅' : '⛔'
         }
           `,
       }));
 
       const embed = {
-        title: `${novel.name} ${novel.status === 'ENABLED' ? '🟢' : '🔴'}`,
+        title: `${novel.name} ${novel.status === 'ENABLED' ? '✅' : '⛔'}`,
         color: 1_816_200,
         thumbnail: {
           url: novel.thumbnailUrl,
@@ -60,7 +59,18 @@ const novels: SlashCommand = {
 
     await interaction.reply({
       embeds,
-      ephemeral: true,
+    });
+    const legendEmbed = {
+      title: 'Info',
+      fields: [
+        { name: '✅', value: 'Enabled' },
+        { name: '⛔', value: 'Disabled' },
+      ],
+      color: '#000',
+    };
+
+    await interaction?.channel?.send({
+      embeds: [legendEmbed as unknown as Embed],
     });
   },
 };

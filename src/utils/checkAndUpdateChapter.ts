@@ -51,12 +51,13 @@ export const checkAndUpdateChapter = async ({
     return false;
   }
 
-  const { number, link, title } = chapterInfo;
+  const { number: newChapterNumber, link, title } = chapterInfo;
 
-  if (
-    number <= oldChapterNumber ||
-    !(Math.abs(oldChapterNumber - number) > 10)
-  ) {
+  if (newChapterNumber === oldChapterNumber) {
+    return false;
+  }
+
+  if (Math.abs(oldChapterNumber - newChapterNumber) > 20) {
     return false;
   }
 
@@ -68,13 +69,13 @@ export const checkAndUpdateChapter = async ({
     },
     data: {
       chapterTitle: translatedTitle.text,
-      chapterNumber: number,
+      chapterNumber: newChapterNumber,
       chapterUrl: link,
     },
   });
 
   const embed = newChapterEmbed({
-    chapterNumber: number,
+    chapterNumber: newChapterNumber,
     chapterTitle: translatedTitle.text,
     novelTitle: name,
     updatedAtTimeStamp: updatedChapter.updatedAt,
@@ -82,7 +83,7 @@ export const checkAndUpdateChapter = async ({
     sourceName: source,
     sourceUrl,
     thumbnailUrl,
-    numberOfChaps: number - oldChapterNumber,
+    numberOfChaps: newChapterNumber - oldChapterNumber,
   });
 
   await pingForUpdate({

@@ -16,7 +16,6 @@ const token = process.env.DISCORD_TOKEN;
 if (!process.env.PREFIX) {
   process.env.PREFIX = '-';
 }
-console.log(process.env);
 
 const main = async () => {
   try {
