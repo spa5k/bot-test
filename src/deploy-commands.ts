@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { REST } from '@discordjs/rest';
 import type { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/rest/v9';
 import { Routes } from 'discord-api-types/rest/v9';
@@ -5,7 +8,6 @@ import {
   APIApplicationCommandOptionChoice,
   SlashCommandBuilder,
 } from 'discord.js';
-import dotenv from 'dotenv';
 import { readdirSync } from 'fs';
 import path from 'path';
 import { novelSlash } from './novelCommand/novelSlash';
@@ -13,7 +15,7 @@ import roles from './novelCommand/roles';
 import { db } from './prisma';
 import { SlashCommand } from './types/discord';
 
-dotenv.config();
+
 
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.CLIENT_ID;
@@ -139,5 +141,5 @@ const deployCommands = async () => {
 };
 
 deployCommands().catch((error) => {
-  console.log(error);
+  console.log('Registering', error);
 });

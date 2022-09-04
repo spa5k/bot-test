@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+dotenv.config();
 import cron from 'node-cron';
 import { client } from './config/client';
 import { commandHandler } from './handlers/command';
@@ -10,7 +11,6 @@ import { cronNovelUpdate } from './utils/cronNovelUpdate';
 
 require('isomorphic-fetch');
 
-dotenv.config();
 
 const token = process.env.DISCORD_TOKEN;
 if (!process.env.PREFIX) {
