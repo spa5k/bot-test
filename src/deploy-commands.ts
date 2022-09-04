@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config();
 
 import { REST } from '@discordjs/rest';
 import type { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/rest/v9';
@@ -15,7 +14,7 @@ import roles from './novelCommand/roles';
 import { db } from './prisma';
 import { SlashCommand } from './types/discord';
 
-
+dotenv.config();
 
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.CLIENT_ID;
@@ -128,7 +127,7 @@ const deployCommands = async () => {
     console.log('Error happened while creating roleSlashCommandHandler', err);
   }
 
-  const rest = new REST({ version: '9' }).setToken(String(token));
+  const rest = new REST({ version: '10' }).setToken(token);
   try {
     const bot = rest.put(Routes.applicationGuildCommands(clientId, guildId), {
       body: commands,

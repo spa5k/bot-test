@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import cron from 'node-cron';
 import { client } from './config/client';
 import { commandHandler } from './handlers/command';
@@ -9,8 +8,9 @@ import { roleSlashCommandHandler } from './handlers/roleCommand';
 import { slashCommandHandler } from './handlers/slashCommand';
 import { cronNovelUpdate } from './utils/cronNovelUpdate';
 
-require('isomorphic-fetch');
+dotenv.config();
 
+require('isomorphic-fetch');
 
 const token = process.env.DISCORD_TOKEN;
 if (!process.env.PREFIX) {
@@ -18,6 +18,8 @@ if (!process.env.PREFIX) {
 }
 
 const main = async () => {
+  await client.login(token);
+
   try {
     await commandHandler(client);
   } catch (error) {
