@@ -18,8 +18,6 @@ if (!process.env.PREFIX) {
 }
 
 const main = async () => {
-  await client.login(token);
-
   try {
     await commandHandler(client);
   } catch (error) {
