@@ -50,7 +50,7 @@ const main = async () => {
     console.log('Error in event handler', error);
   }
 
-  client.on('ready', () => {
+  client.once('ready', () => {
     [...client.guilds.cache.values()].forEach((guild) => {
       console.info(`🚀 Bot connected to Discord server: ${guild.name}`);
     });
