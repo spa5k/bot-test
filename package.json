@@ -27,12 +27,12 @@
     "dist"
   ],
   "scripts": {
-    "dev": "node-dev -r dotenv/config dist/src/index.js --notify=false",
     "build": "npx tsc",
-    "register": "node -r dotenv/config dist/src/deploy-commands.js",
+    "dev": "node-dev -r dotenv/config dist/src/index.js --notify=false",
     "format": "prettier --write .",
     "lint": "eslint src --ext .ts --fix",
-    "proc": "npm run register && npm run dev"
+    "proc": "npm run register && npx playwright-chromium install chromium && npm run dev",
+    "register": "node -r dotenv/config dist/src/deploy-commands.js"
   },
   "dependencies": {
     "@discordjs/rest": "1.1.0",
